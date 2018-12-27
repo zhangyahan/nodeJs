@@ -9,8 +9,9 @@ var server = http.createServer()
 //      Response响应对象
 //          响应对象可以用来给客户端发送响应消息
 // on(): 监听request请求事件
-server.on('request', function (request, res) {
+server.on('request', function (request, response) {
     console.log('收到客户端的请求了,请求路径是' + request.url)
+    console.log(request.socket.remoteAddress, request.socket.remotePort)
 
     // response对象有一个方法,write可以用来给客户端发送响应数据
     // write可以使用多次,但是最后一定要使用end来结束响应,否则客户端会一直等待
@@ -68,7 +69,7 @@ server.on('request', function (request, res) {
     }
     
     // 响应对象只能是二进制数据或者是字符串
-    res.end(JSON.stringify(products))
+    response.end(JSON.stringify(products))
 })
 
 server.listen(9999, function () {
