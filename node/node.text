@@ -2,12 +2,12 @@
 
 ## Nodejs - npm 简单使用
 	- npm install npm@latest -g  更新npm到最新版本-g代表全局
-	- npm uninstall 包名 
-	- npm install 包名
-	- npm update
-	- npm install@版本号
-	- npm init -y 初始化一个package.json文件, 使用默认配置
-	- npm init 初始化一个package.json文件, 手动配置
+	- npm uninstall 包名  卸载包
+	- npm install 包名  在当前项目安装包
+	- npm update  包名  在当前项目更新包
+	- npm install@版本号  安装指定版本的包
+	- npm init -y 初始化一个package.json文件, 使用默认配置  \
+	- npm init 初始化一个package.json文件, 手动配置        /   创建项目的第一步就是先初始化一个package.json文件
 		- package.json文件的具体信息
 			{
 			  "name": "sublime-nodejs",  // 配置文件的名字
@@ -18,6 +18,22 @@
 			    "uglify-js": "^2.6.4"
 			  }
 			}
+
+## nodemon插件()
+	- 帮助服务器在代码更改时,自动重启
+	- npm install nodemon -g 安装
+	- nodemon filename 使用
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## NodeJs的代码风格
@@ -40,7 +56,7 @@
 		有时候我们加载文件模块的目的, 不是简简单单的执行里面的代码, 而是使用模块中的成员
 
 
-	- 到处模块中的成员使用exports对象, 将想要被外部访问的成员挂载到exports对象上
+	- 导出模块中的成员使用exports对象, 将想要被外部访问的成员挂载到exports对象上
 		require方法有两个作用:
 			1. 加载文件模块并执行里面的代码
 			2. 拿到被加载模块到处的接口对象
@@ -55,8 +71,54 @@
 		- 引用模块式编程, 引入(require)和挂载(exports), 没有全局作用域, 只有模块作用域
 
 
-	- 请求对象和响应对象
+	- 请求对象和响应对象(http)
+		var http = require('http')
+		var server = http.createServer()
+		server.on("request", function(request, response))
+
+		request.url
+		request.method
+			
+
+	- 模板引擎(art-template模块)
+		- 根据{{ 变量名 }}进行匹配
+			var template = require('art-template')
+			var htmlStr = template.render(str, {
+				变量名: "value",
+			})
+			返回渲染后的字符串
+			response.end(htmlStr)
+
+## 一个简单的web服务器框架
+	- 启动程序模块(入口文件)
+	- 服务器主逻辑模块
+	- 路由模块
+	- 视图处理函数模块
+	创建请求路径与视图处理函数之间的映射关系
+
+
+## nodejs的序列化
+	- JSON
+		JSON.stringify("字符串")
+
+## 事件
+
+## 常用模块
+	- http(接收客户端请求的模块)
+
+	- fs(文件处理模块)
+
+	- path(路径处理模块)
+
+	- url(请求路径处理)
+		url.parse(url, false).pathname  // 获取路径
+		url.parse(url, true).query  // 获取get请求的数据
+
+	- querystring(将post请求的数据转换成json数据类型)
+		data = Buffer.concat(data).toString()  // 将数组转换成字符串
+		querystring.parse(data) // 转成字典格式
+
+
+
+## express
 	
-
-	- 模板引擎
-
